@@ -60,17 +60,15 @@ while True:
 
 #5_D
 n = int(input())
-
+ans = []
 for i in range(1, n + 1):
     x = i
-    
     if x % 3 == 0:
-        print(' ' + str(i), end='')
+        ans.append(i)
         continue
-    
-    while x:    # xが0になったらFalse
+    while x: # xが0になったらFalse
         if x % 10 == 3:
-            print(' ' + str(i), end='')
+            ans.append(i)
             break
         x //= 10
-
+print(*ans)

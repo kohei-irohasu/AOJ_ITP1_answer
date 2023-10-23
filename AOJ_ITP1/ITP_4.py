@@ -1,19 +1,18 @@
 #4_A
 a, b = map(int, input().split())
-
 d = a // b
 r = a % b
 f = a / b
-
-print("%d %d %.6f" % (d, r, f))
+print(f'{d} {r} {f:.8f}')
 
 
 #4_B
 import math
+PI = math.pi
 r = float(input())
-area = math.pi * r ** 2
-circumference = 2 * math.pi * r
-print("%.6f %.6f" % (area, circumference))
+area = PI*r**2
+circumferrence = 2*PI*r
+print(f'{area:.8f} {circumferrence:.8f}')
 
 
 #4_C
