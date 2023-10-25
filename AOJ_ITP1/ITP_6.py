@@ -7,35 +7,22 @@ print(*reversed_A)
 
 
 #6_B
-def output(array, mark):
-    for i in range(1, 14):
-        if array[i] == 0:
-            print(f'{mark} {i}')
+def find_cards(n, data):
+    marks = {'S': [0] * 14, 'H': [0] * 14, 'C': [0] * 14, 'D': [0] * 14}
+    
+    for i in range(n):
+        mark, num = data[i]
+        num = int(num)
+        marks[mark][num] = 1
+    
+    for mark in ['S', 'H', 'C', 'D']:
+        for num in range(1, 14):
+            if marks[mark][num] == 0:
+                print(f'{mark} {num}')
 
-def main():
-    s, h, c, d = [0] * 14, [0] * 14, [0] * 14, [0] * 14
-    
-    n = int(input())
-    
-    for _ in range(n):
-        mark, tmp = input().split()
-        tmp = int(tmp)
-        
-        if mark == 'S':
-            s[tmp] = 1
-        elif mark == 'H':
-            h[tmp] = 1
-        elif mark == 'C':
-            c[tmp] = 1
-        else:
-            d[tmp] = 1
-
-    output(s, 'S')
-    output(h, 'H')
-    output(c, 'C')
-    output(d, 'D')
-    
-main()
+n = int(input())
+data = [input().split() for _ in range(n)]
+find_cards(n, data)    
 
 
 #6_C
