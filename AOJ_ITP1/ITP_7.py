@@ -1,7 +1,7 @@
 #7_A
 while True:
     m, f, r = map(int, input().split())
-    if m == -1 and f == -1 and r == -1:
+    if (m, f, r) == (-1, -1, -1):
         break
     if m == -1 or f == -1:
         grade = 'F'
@@ -25,11 +25,13 @@ while True:
         break
     
     count = 0
-    for i in range(1, x // 3 + 1):
-        for j in range(i + 1, min(x - (i * 2), n)):
-            if x - (i + j) <= n and j < x - (i + j): 
+    for i in range(1, n - 1):
+        for j in range(i + 1, n):
+            k = x - i - j
+            if j < k <= n:
                 count += 1
     print(count)
+    
 
 
 #7_C
