@@ -56,15 +56,13 @@ for i in table:
 n, m, l = map(int, input().split())
 A = [list(map(int, input().split())) for _ in range(n)]
 B = [list(map(int, input().split())) for _ in range(m)]
-
 C = [[0] * l for _ in range(n)]
+
 for i in range(n):
-    for k in range(l):
-        for j in range(m):
-            C[i][k] += A[i][j] * B[j][k] 
-
+    for j in range(l):
+        for k in range(m):
+            C[i][j] += A[i][k] * B[k][j]
+            
 for i in C:
-    print(*i)   
+    print(*i)
 
-
-        
