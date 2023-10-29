@@ -1,43 +1,39 @@
 #8_A
 ch = input()
-result = ""
+ans = ""
 for i in ch:
     if i.islower():
-        result += i.upper()
+        ans += i.upper()
     elif i.isupper():
-        result += i.lower()
+        ans += i.lower()
     else:
-        result += i
-        
-print(result)
-
+        ans += i
+print(ans)
 
 #8_B
-total = 0
 while True:
-    line = input()
-    if line == '0':
-        break
-    total += sum(int(i) for i in line)
-    print(total)
     total = 0
+    x = input()
+    if x == '0':
+        break
+    total += sum(int(i) for i in x)
+    print(total)
+    
     
 
 #8_C
-count_table = [0] * 256
-
+count_table = [0] * 128
 while True:
     try:
-        ch = input().strip()
+        ch = input().strip()  #strip()は文字列の先頭と末尾から空白文字（スペース、タブ、改行文字）を削除する
+        ch = ch.lower()        
         for i in ch:
             count_table[ord(i)] += 1
     except EOFError:
         break
-
+    
 for i in range(97, 123):
-    ans = count_table[i] + count_table[i - 32]
-    print(f'{chr(i)} : {ans}')
-
+    print(f'{chr(i)} : {count_table[i]}')
 
 #8_D
 s = input()
