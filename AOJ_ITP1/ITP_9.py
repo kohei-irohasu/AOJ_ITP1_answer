@@ -1,62 +1,62 @@
 #9_A
 W = input()
 count = 0
+
 while True:
     T = input()
     if T == 'END_OF_TEXT':
         break
+    
     words = T.lower().split()
-    for i in range(len(words)):
-        if W == words[i]:
+    for i in words:
+        if i == W:
             count += 1
 print(count)
 
 
 #9_B
 while True:
-    s = input()
-    if s == '-':
+    words = input()
+    if words == "-":
         break
+    
     m = int(input())
-    num = sum([int(input()) for _ in range(m)])
-    num %= len(s)  # 総和を文字列の長さで割る
-    shuffled = s[num:] + s[:num]  # シャッフルした結果の文字列を作成
-    print(shuffled)
+    h = sum([int(input()) for _ in range(m)])
+    num = h % len(words) # 総和を文字列の長さで割る
+    print(words[num:] + words[:num]) # シャッフルした結果の文字列を作成
+
 
 #9_C
 n = int(input())
-t = 0
-h = 0
+t_point = 0
+h_point = 0
 
 for _ in range(n):
     taro, hanako = input().split()
     
     if taro == hanako:
-        t += 1
-        h += 1
+        t_point += 1
+        h_point += 1
     elif taro > hanako:
-        t += 3
+        t_point += 3
     else:
-        h += 3
-
-print(t, h)
+        h_point += 3
+print(t_point, h_point)
+    
 
 
 #9_D
-s = input()
+words = input()
 q = int(input())
 
 for _ in range(q):
     operation, *args = input().split()
-    if operation == "print":
-        a, b = map(int, args)
-        print(s[a:b + 1])
-    elif operation == 'reverse':
-        a, b = map(int, args)
-        s = s[:a] + s[a:b + 1][::-1] + s[b + 1:]
+    a, b = int(args[0]), int(args[1])
+    if operation == "replace":
+        s = args[2]
+        words = words[:a] + s + words[b + 1:]
+    elif operation == "reverse":
+        words = words[:a] + words[a:b + 1][::-1] + words[b + 1:]
     else:
-        a = int(args[0])
-        b = int(args[1])
-        s2 = args[2]
-        s = s[:a] + s2 + s[b + 1:]
+        print(words[a:b + 1])
     
