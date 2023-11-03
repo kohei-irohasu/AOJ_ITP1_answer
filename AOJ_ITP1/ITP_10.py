@@ -20,18 +20,17 @@ print(f'{h:.8f}')
 
 #10_C
 import math
-n = int(input())
-
-while n != 0:
+while True:
+    n = int(input())
+    if n == 0:
+        break
+    
     s = list(map(float, input().split()))
     mean = sum(s) / n
-    variance = sum((mean - x) ** 2 for x in s) / n
+    variance = sum((x - mean) ** 2 for x in s) / n
     standard_deviation = math.sqrt(variance)
-    
     print(f'{standard_deviation:.8f}')
     
-    n = int(input())
-
 
 #10_D
 import math
@@ -44,7 +43,5 @@ d2 = math.sqrt(sum((a[i] - b[i]) ** 2 for i in range(n)))
 d3 = pow(sum(abs(a[i] - b[i]) ** 3 for i in range(n)), 1/3)
 d4 = max(abs(a[i] - b[i]) for i in range(n))
 
-print(f'{d1:.8f}')
-print(f'{d2:.8f}')
-print(f'{d3:.8f}')
-print(f'{d4:.8f}')
+for i in (d1, d2, d3, d4):
+    print(i)
