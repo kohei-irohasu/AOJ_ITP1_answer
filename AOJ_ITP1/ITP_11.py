@@ -94,35 +94,27 @@ class Dice:
             
     def is_equal(self, other):
         return self.sides == other.sides
+
+def check(dice1, dice2):
     
+    for _ in range(4):
+        dice2.roll('R')
+        for _ in range(4):
+            dice2.roll('N')
+            if dice1.is_equal(dice2):
+                return True
+                
 dice1 = Dice(list(map(int, input().split())))
 dice2 = Dice(list(map(int, input().split())))
-is_same = False
 
-for _ in range(4):
-    dice2.roll('R')
-    for _ in range(4):
-        dice2.roll('N')
-        if dice1.is_equal(dice2):
-            is_same = True
-
-dice2.roll('E')
-for _ in range(4):
-        dice2.roll('N')
-        if dice1.is_equal(dice2):
-            is_same = True
-            
-dice2.roll('W')
-dice2.roll('W')
-for _ in range(4):
-        dice2.roll('N')
-        if dice1.is_equal(dice2):
-            is_same = True
-
-if is_same:
+if check(dice1, dice2):
     print('Yes')
 else:
-    print('No')
+    dice2.roll("E")
+    if check(dice1, dice2):
+        print('Yes')
+    else:
+        print('No')
 
 
 #11_D
@@ -142,46 +134,36 @@ class Dice:
             (self.sides[0], self.sides[1], self.sides[4], self.sides[5]) = (self.sides[1], self.sides[5], self.sides[0], self.sides[4])
         elif direction == 'R':
             (self.sides[1], self.sides[2], self.sides[3], self.sides[4]) = (self.sides[2], self.sides[4], self.sides[1], self.sides[3])
-    
-def is_equal(dice1, dice2):
-    return dice1.sides == dice2.sides
-    
-def is_same(dice1, dice2):
+            
+    def is_equal(self, other):
+        return self.sides == other.sides
+
+def check_rotation(dice1, dice2):
     for _ in range(4):
         dice2.roll('R')
         for _ in range(4):
             dice2.roll('N')
-            if is_equal(dice1, dice2):
+            if dice1.is_equal(dice2):
                 return True
-
-    dice2.roll('E')
-    for _ in range(4):
-            dice2.roll('N')
-            if is_equal(dice1, dice2):
-                return True 
-                
-    dice2.roll('W')
-    dice2.roll('W')
-    for _ in range(4):
-            dice2.roll('N')
-            if is_equal(dice1, dice2):
-                return True
-    
     return False
 
 n = int(input())
 dices = []
 
 for i in range(n):
-    sides = list(map(int, input().split()))
+    sides = (list(map(int, input().split())))
     dices.append(Dice(sides))
-    
+
 flag = True
-for j in range(n - 1):
-    for k in range(j + 1, n):
-        if is_same(dices[j], dices[k]):
+for i in range(n - 1):
+    for j in range(i + 1, n):
+        if check_rotation(dices[i], dices[j]):
             flag = False
             break
+        else:
+            dices[j].roll("E")
+            if check_rotation(dices[i], dices[j]):
+                flag = False
+                break
 
 print('Yes' if flag else 'No')
-    
